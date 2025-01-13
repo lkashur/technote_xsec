@@ -1,0 +1,150 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../figures/}}}
+\begin{document}
+
+\section{$\nu_{\mu}$ CC $\pi^{0}$ Selection}
+\label{sec:selection}
+
+
+\subsection{Signal Definition}
+The $\nu_{\mu}$ CC $\pi^{0}$ signal definition encompasses charged-current neutrino interactions occuring within the fiducial volume of the detector and containing
+\begin{itemize}
+    \item exactly one primary muon
+    \item exactly zero charged pions
+    \item exactly one neutral pion
+    \item any number of particles that are not muons or pions.
+\end{itemize}
+This signal definition applies to final state particles, or particles exiting the target nucleus post-final state interactions (FSI).
+
+Additional requirements are placed on the signal definition to ensure tracking thresholds are met and selection purity and efficiency are optimized.  These are referred to as phase space constraints and include:
+\begin{itemize}
+    \item $p_{\mu} > 226$ MeV/c
+    \item $p_{\pi^{0}} > 100$ MeV/c.
+\end{itemize}
+
+\subsection{Selection Cuts}
+When selecting $\nu_{\mu}$ CC $\pi^{0}$ interactions, cuts are made on various reconstructed outputs to narrow the list of candidate interactions.  First, the reconstructed interaction is required to occur within the ICARUS fiducial volume.  The interaction must then pass a topology cut, enforcing inclusion of exactly one primary muon, zero primary charged pions, and two primary photons as reported by the ML reconstruction chain's primary particle classification and particle identification algorithms.  The particles within an interaction must also meet the phase space constraints of the signal definition, necessitating methods to estimate particle energy and momentum.  These methods are discussed in Section \ref{subsec:vars}.  Finally, the interaction is required to be associated with an optical flash that is in-time with the NuMI beam gate, as determined by the OpT0Finder algorithm.  When these criteria are met, the interaction is considered a candidate $\nu_{\mu}$ CC $\pi^{0}$ interaction.
+
+
+\subsection{Selection Performance}
+Selection performance is assessed using the NuMI $\nu$ + Cosmic MC sample and off-beam NuMI Run 2 data.  The metrics that have been evaulated are efficiency - the fraction of true signal interactions are matched to selected interactions, and purity - the fraction of selected interactions are matched to true signal interactions.  Figure \ref{fig:efficiency_momentum} shows the selection efficiency for $\nu_{\mu}$ CC $\pi^{0}$ events before muon and neutral pion momentum thresholds are applied.  The sharp drop-offs at 226 MeV/c and 100 MeV/c for the muon and neutral pion distributions, respectively, motivate the phase space constraints of the signal definition.
+
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.90\textwidth]{missing.pdf}
+    \caption[text]{A missing figure.}
+    \label{fig:efficiency_momentum}
+\end{figure}
+
+Overall, the selection acheives an efficiency of 80\% and a purity of 80\%.  Efficiency and purity for each selection cut are shown in Table \ref{Tab:pureff}.  Signal inefficicies are further characterized in the confusion matrix shown in Figure \ref{fig:efficiency_confusion}, while the backgrounds that lead to impurities are seen in Section \ref{subsec:vars}.
+
+\begin{table}[ht]
+    \caption{Purity and efficiency for $\nu_{\mu}$ CC $\pi^{0}$ Selection Cuts}
+    \vspace{0.1cm}
+    \centering
+    \begin{tabular}{ c c c } 
+    \hline
+    Selection Cut & Purity [\%] & Efficiency [\%]  \\
+    \hline
+    No Cut & xx & xx \\ 
+    Fiducial Volume & xx & xx \\
+    Final State Topology & xx & xx \\ 
+    \hline
+    \end{tabular}
+    \label{Tab:pureff}
+\end{table}
+
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.90\textwidth]{missing.pdf}
+    \caption[text]{A missing figure.}
+    \label{fig:efficiency_confusion}
+\end{figure}
+
+\subsection{Variables of Interest}
+\label{subsec:vars}
+In this section, the kinematic observables used in the single differential cross section measurement are discussed.  Included are the momenta of the final state muon and neutral pion, as well as the angles these particles make with the NuMI beam.  An additional variable, the invariant diphoton mass, is examined as it serves as a useful standard candle in the calibration of the electromagnetic shower energy scale.  First, however, the methods used to estimate the energy (and momentum) of the reconstructed particles of interest is detailed.
+
+\subsubsection{Energy Reconstruction}
+To estimate the momentum of the reconstructed muon, a ``best estimate" approach is taken.  For muons contained within the active detector volume, momentum is calculated using the Continous Slowing Down Approximation (CSDA) that relates a particle's kinetic energy to its range in a material.  For momentum estimation of exiting muons, the degree of multiple coulomb scattering (MCS) along the track is instead used.  Figure \ref{fig:muonmomentum} shows how each muon momentum estimate compares with true muon momentum in simulation.
+
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.90\textwidth]{missing.pdf}
+    \caption[text]{A missing figure.}
+    \label{fig:muonmomentum}
+\end{figure}
+
+Unlike muons, neutral pions do not directly ionize the detector medium.  The neutral pion momentum must therefore be inferred from the electromagnetic showers instigated by the photons it decays to.  Shower energy (and momentum) is estimated calorimetrically by summing charge depositions belonging to the shower and accounting for various detector effects:
+\begin{equation}
+    E_{shower} = W_{i} [\frac{MeV}{e^{-}}] \cdot C_{cal} [\frac{e^{-}}{ADC}] \cdot C_{adj} \cdot \frac{1}{R} \cdot \sum_{dep} e^{\frac{t_{drift}}{\tau}} \cdot dep [ADC],
+\end{equation}
+where
+\begin{itemize}[label=]
+    \setlength\itemsep{0.1ex}
+    \item $W_{i}$ is the work function for argon
+    \item $C_{cal}$ converts charge units from ADC to electrons
+    \item $C_{adj}$ accounts for missing energy due to subthreshold charge and clustering effects in reconstruction
+    \item $R$ is the recombination factor
+    \item $\tau$ is the electron lifetime
+    \item $dep$ is charge in units of ADC.
+\end{itemize}
+As the signal definition for this analysis does not require showers to be contained, an additional correction factor is needed to correct for missing energy in exiting showers.  A study for deriving this factor is ongoing with results expected soon.
+
+\subsubsection{Muon Observables}
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.45\textwidth]{missing.pdf}
+    %\hspace{1cm}
+    \includegraphics[width=0.45\textwidth]{missing.pdf}
+    \caption[text]{A missing figure.}
+    \label{fig:muon_obs}
+\end{figure}
+
+\subsubsection{Photon Observables}
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.45\textwidth]{missing.pdf}
+    %\hspace{1cm}
+    \includegraphics[width=0.45\textwidth]{missing.pdf}
+    \caption[text]{A missing figure.}
+    \label{fig:ph_obs0}
+\end{figure}
+
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.45\textwidth]{missing.pdf}
+    %\hspace{1cm}
+    \includegraphics[width=0.45\textwidth]{missing.pdf}
+    \caption[text]{A missing figure.}
+    \label{fig:ph_obs1}
+\end{figure}
+
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.45\textwidth]{missing.pdf}
+    %\hspace{1cm}
+    \includegraphics[width=0.45\textwidth]{missing.pdf}
+    \caption[text]{A missing figure.}
+    \label{fig:ph_obs2}
+\end{figure}
+
+\subsubsection{Neutral Pion Observables}
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.45\textwidth]{missing.pdf}
+    %\hspace{1cm}
+    \includegraphics[width=0.45\textwidth]{missing.pdf}
+    \caption[text]{A missing figure.}
+    \label{fig:pi0_obs0}
+\end{figure}
+
+\begin{figure}[H]
+    \center
+    \includegraphics[width=0.90\textwidth]{missing.pdf}
+    \caption[text]{A missing figure.}
+    \label{fig:pi0_obs1}
+\end{figure}
+
+
+\end{document}
