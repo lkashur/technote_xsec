@@ -7,7 +7,7 @@
 
 Serving as the far detector for the Short-Baseline Neutrino (SBN) Program, ICARUS is poised to address anomalous results from the LSND and MiniBooNE experiments, where excesses of electron-like events could possibly be interpreted as originating from light sterile neutrinos. One key to resolving these anomalies is the search for electron neutrinos in a predominantly muon neutrino beam, for which ICARUS and other detectors in the SBN suite rely on liquid-argon time projection chamber (LArTPC) technology.  With excellent calorimetry and fine-grained spatial resolution, LArTPCs enable ICARUS to make precise measurements of electron neutrino interactions as part of a robust neutrino oscillation program.
 
-Equally important to the success of ICARUS is characterization of backgrounds that can mimic the electron neutrino appearance signal.  Primary among these backgrounds is the production of neutral pions, or $\pi^{0}$s, which decay electromagnetically to photons.  At energies relevant to the SBN Program, $\pi^{0}$s are mostly attributed to baryon resonance (RES) in neutrino-nucleon interactions.  It is worth noting that the Deep Underground Neutrino Experiment (DUNE) neutrino beam peaks at 2.5 GeV, an energy for which resonance production is the primary neutrino-nucleon interaction mode.  ICARUS analyses centered around neutral pions therefore not only inform us about the SBN Program's most significant background, but also provide a probe for the types of neutrino interactions expected at future neutrino oscillation experiments.
+Equally important to the success of ICARUS is characterization of backgrounds that can mimic the electron neutrino appearance signal.  Primary among these backgrounds is the production of neutral pions, or $\pi^{0}$s, which decay electromagnetically to photons.  $\pi^{0}$ production is mostly attributed to baryon resonance (RES) in neutrino-nucleon interactions that occur at few-GeV scale, which is also the energy at which the upcoming Deep Underground Neutrino Experiment (DUNE) neutrino beam peaks at.  An ICARUS analysis centered around neutral pions therefore not only informs us about the SBN Program's most significant background, but also provides a probe for the types of neutrino interactions expected at next-generation oscillation experiments.
 
 \subsection{Measurement}
 In this document, we report the flux-averaged differential cross section measurement of muon neutrino charged-current interactions with a single $\pi^{0}$ in the final state on argon, hereafter referred to as $\nu_{\mu}$ CC $\pi^{0}$ interactions:
@@ -16,12 +16,13 @@ In this document, we report the flux-averaged differential cross section measure
 \end{equation}
 Here, X represents any final state particles that are not muons or charged pions.  The ommitance of charged pions in the final state aims to exclude charged-current coherent pion production from the analysis, therefore allowing the cross section measurement to probe the resonant production mode that is more relevant to the SBN Program.
 
-Few charged-current $\pi^{0}$ measurements exist on liquid argon, and a high statistics cross section measurment of this channel at ICARUS will help constrain modeling uncertainties associated with $\pi^{0}$ production.  Compared to previous $\nu_{\mu}$ CC $\pi^{0}$ measurements, high resolution of photon kinematic variables will enable extraction of differential cross sections that are precise and finely-binned.
+Few charged-current $\pi^{0}$ measurements exist on liquid argon, and a high statistics cross section measurment of this channel at ICARUS will help constrain uncertainties in modeling resonant neutrino-nucleuon interactions.  We present the $\nu_{\mu}$ CC $\pi^{0}$ differential cross section measurement as a function of muon and neutral pion kinematic variables, with event selection being carried out by a novel machine-learning reconstruction pipeline.  Benefiting from high purity and excellent resolution in reconstructed variables, the extraction of a precise, finely-binned differential cross section is made possible.
+
 
 \subsection{Data and Monte Carlo Samples}
-This analysis utilizes ICARUS data collected from the Neutrinos at the Main Injector (NuMI) beam between winter 2022 to spring 2023 (ICARUS Run 2). This collection period corresponds to approximately $2.7 \times 10^{20}$ protons on target (POT).  Though cross section measurements with the Booster Neutrino beam (BNB) are possible, a single-source measurement using the NuMI beam is suitable for a first analysis and offers a neutrino energy spectrum close to that expected by future neutrino oscillation experiments like DUNE.  Data is processed through the ICARUS reconstuction chain (see Appendices A \& B) with \textit{icaruscode} software version v09\_89\_01\_01.
+This analysis utilizes ICARUS data collected from the Booster Neutrino Beam (BNB) between winter 2022 and spring 2023 (ICARUS Run 2).  This collection period corresponds to approximately $2.05 \times 10^{20}$ protons on target (POT).  The analysis can be easily extended to the Neutrinos at the Main Injector (NuMI) beam, and will be in the future as data processing and treatment of systematic uncertanties allows.  Data is processed through the ICARUS reconstuction chain (see Appendices A \& B) with \textit{icaruscode} software version v09\_89\_01\_01.
 
-Monte Carlo simulation consisting of NuMI neutrinos (produced with GENIE) and cosmics (produced with CORSIKA) is used to assess selection performance.  This Monte Carlo sample corresponds to $2.7 \times 10^{10}$ POT.  To evaluate the impact from cosmic activity that occurs within the 9.6 $\mu s$ NuMI beam gate, off-beam data is used.  A summary of production files uses in this analysis is shown in Table \ref{Tab:prod}.
+Monte Carlo simulation consisting of BNB neutrinos (produced with GENIE) and cosmics (produced with CORSIKA) is used to assess selection performance.  This Monte Carlo sample corresponds to $1.74 \times 10^{10}$ POT.  To evaluate the impact from cosmic activity that occurs within the 9.6 $\mu s$ BNB beam gate, off-beam data is used (\textcolor{red}{To-do}).  A summary of production files uses in this analysis is shown in Table \ref{Tab:prod}.
 
 \begin{table}[ht]
     \caption{Data/Simulation Productions used for $\nu_{\mu}$ CC $\pi^{0}$ analysis.}
@@ -31,9 +32,9 @@ Monte Carlo simulation consisting of NuMI neutrinos (produced with GENIE) and co
     \hline
       &  Production & POT  \\
     \hline
-    Data (on-beam) & NuMI Run 2 On-Beam Majority Trigger & $2.7 \times 10^{10}$ \\ 
-    Data (off-beam) & NuMI Run 2 Off-Beam Majority Trigger & N/A \\
-    Simulation & NuMI $\nu$ + Cosmics & $2.7 \times 10^{10}$ \\ 
+    Data (on-beam) & BNB Run 2 On-Beam Majority Trigger & $2.05 \times 10^{20}$ \\ 
+    Data (off-beam) & BNB Run 2 Off-Beam Majority Trigger & N/A \\
+    Simulation & BNB $\nu$ + Cosmics & $1.74 \times 10^{20}$ \\ 
     \hline
     \end{tabular}
     \label{Tab:prod}
@@ -45,6 +46,6 @@ To ensure the data used in this analysis is of physics quality, a number of data
 \subsubsection{Unblinding Strategy}
 The official blinding policy of the ICARUS collaboration (doc-db 34523) states that 90 percent of data is to remain blinded until any analysis is finalized.  To comply with this policy, all analysis toward the $\nu_{\mu}$ CC $\pi^{0}$ cross section measurement shown in this document only uses the 10 percent of Run 2 data that has been unblinded.  An exception has been made for data collection run 9435, which has been completely unblinded for the purpose of visual scanning.
 
-Pending approval from the physics coordinators and event selection working group, we request access to..
+Pending approval from the physics coordinators and event selection working group, we request access to...(\textcolor{red}{To-do})
 
 \end{document}

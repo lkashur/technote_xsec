@@ -14,20 +14,25 @@ The $\nu_{\mu}$ CC $\pi^{0}$ signal definition encompasses charged-current neutr
     \item exactly one neutral pion
     \item any number of particles that are not muons or pions.
 \end{itemize}
-This signal definition applies to final state particles, or particles exiting the target nucleus post-final state interactions (FSI).
+This signal definition applies to final state particles, or particles exiting the target nucleus post-final state interactions (FSI).  The fiducial volume requirement applies to the neutrino interaction vertex, which must be 25 cm from detector boundaries in the drift and vertical directions, 30 cm from the upstream detector face, and 50 cm from the downstream face.
 
 Additional requirements are placed on the signal definition to ensure tracking thresholds are met and selection purity and efficiency are optimized.  These are referred to as phase space constraints and include:
 \begin{itemize}
-    \item $p_{\mu} > 226$ MeV/c
-    \item $p_{\pi^{0}} > 100$ MeV/c.
+    \item $p_{\mu} \ge 226$ MeV/c
+    \item $p_{\pi^{0}} \ge 100$ MeV/c.
 \end{itemize}
 
 \subsection{Selection Cuts}
-When selecting $\nu_{\mu}$ CC $\pi^{0}$ interactions, cuts are made on various reconstructed outputs to narrow the list of candidate interactions.  First, the reconstructed interaction is required to occur within the ICARUS fiducial volume.  The interaction must then pass a topology cut, enforcing inclusion of exactly one primary muon, zero primary charged pions, and two primary photons as reported by the ML reconstruction chain's primary particle classification and particle identification algorithms.  The particles within an interaction must also meet the phase space constraints of the signal definition, necessitating methods to estimate particle energy and momentum.  These methods are discussed in Section \ref{subsec:vars}.  Finally, the interaction is required to be associated with an optical flash that is in-time with the NuMI beam gate, as determined by the OpT0Finder algorithm.  When these criteria are met, the interaction is considered a candidate $\nu_{\mu}$ CC $\pi^{0}$ interaction.
-
+When selecting $\nu_{\mu}$ CC $\pi^{0}$ interactions, cuts are made on various reconstructed outputs to narrow the list of candidate interactions.  Included are cuts on:
+\begin{itemize}
+    \item \underline{Fiducial volume}: Reconstructed vertex is required to be inside fiducial volume (defined in signal definition).
+    \item \underline{Topology}: Interaction contains exactly one primary muon, zero primary charged pions, and two or three primary photons as reported by the machine-learning reconstruction chain's primary particle classification and particle identification algorithms.  Particles also meet phase space requirements of the signal definition.  In the case of three photons, the pair of photons with reconstructed invariant mass closest to $m_{\pi^{0}}$ is chosen to represent the neutral pion candidate.
+    \item \underline{Neutral pion mass}: Invariant diphoton mass $<$ 400 MeV in order to reject $\eta$ mesons.
+    \item \underline{Flash time}: Interaction is associated with an optical flash that is in-time with BNB beam gate, as determined by the OpT0Finder algorithm.
+\end{itemize}
 
 \subsection{Selection Performance}
-Selection performance is assessed using the NuMI $\nu$ + Cosmic MC sample and off-beam NuMI Run 2 data.  The metrics that have been evaulated are efficiency - the fraction of true signal interactions are matched to selected interactions, and purity - the fraction of selected interactions are matched to true signal interactions.  Figure \ref{fig:efficiency_momentum} shows the selection efficiency for $\nu_{\mu}$ CC $\pi^{0}$ events before muon and neutral pion momentum thresholds are applied.  The sharp drop-offs at 226 MeV/c and 100 MeV/c for the muon and neutral pion distributions, respectively, motivate the phase space constraints of the signal definition.
+Selection performance is assessed using the BNB $\nu$ + Cosmic MC sample and off-beam BNB Run 2 data.  The metrics that have been evaulated are efficiency - the fraction of true signal interactions that are matched to selected interactions, and purity - the fraction of selected interactions that are matched to true signal interactions.  Figure \ref{fig:efficiency_momentum} shows the selection efficiency for $\nu_{\mu}$ CC $\pi^{0}$ events before muon and neutral pion momentum thresholds are applied.  The sharp drop-offs at 226 MeV/c and 100 MeV/c for the muon and neutral pion distributions, respectively, motivate the phase space constraints of the signal definition.
 
 \begin{figure}[H]
     \center
@@ -66,13 +71,16 @@ Overall, the selection acheives an efficiency of 80\% and a purity of 80\%.  Eff
 In this section, the kinematic observables used in the single differential cross section measurement are discussed.  Included are the momenta of the final state muon and neutral pion, as well as the angles these particles make with the NuMI beam.  An additional variable, the invariant diphoton mass, is examined as it serves as a useful standard candle in the calibration of the electromagnetic shower energy scale.  First, however, the methods used to estimate the energy (and momentum) of the reconstructed particles of interest is detailed.
 
 \subsubsection{Energy Reconstruction}
-To estimate the momentum of the reconstructed muon, a ``best estimate" approach is taken.  For muons contained within the active detector volume, momentum is calculated using the Continous Slowing Down Approximation (CSDA) that relates a particle's kinetic energy to its range in a material.  For momentum estimation of exiting muons, the degree of multiple coulomb scattering (MCS) along the track is instead used.  Figure \ref{fig:muonmomentum} shows how each muon momentum estimate compares with true muon momentum in simulation.
+To estimate the momentum of the reconstructed muon, it is first necessary to reconstruct its energy, for which a ``best estimate" approach is taken.  For muons contained within the active detector volume, momentum is calculated using the Continous Slowing Down Approximation (CSDA) that relates a particle's kinetic energy to its range in a material.  For momentum estimation of exiting muons, the degree of multiple coulomb scattering (MCS) along the track is instead used.  Figure \ref{fig:muon_energy} shows how each muon momentum estimate compares with true muon momentum in simulation.
 
 \begin{figure}[H]
     \center
-    \includegraphics[width=0.90\textwidth]{missing.pdf}
-    \caption[text]{A missing figure.}
-    \label{fig:muonmomentum}
+    \subfloat[Reconstructed energy is calculated using range-based method.]{\includegraphics[width=0.90\textwidth]{muon_reco_csda_ke_vs_true_ke.pdf}}\\
+
+    \subfloat[Reconstructed energy is calculated using information from multiple coulomb scattering.]{\includegraphics[width=0.90\textwidth]{muon_reco_mcs_ke_vs_true_ke.pdf}} 
+
+    \caption{Comparisons of reconstructed and true muon kinetic energy for a selection of contained muons in ICARUS simulation.}
+    \label{fig:muon_energy}
 \end{figure}
 
 Unlike muons, neutral pions do not directly ionize the detector medium.  The neutral pion momentum must therefore be inferred from the electromagnetic showers instigated by the photons it decays to.  Shower energy (and momentum) is estimated calorimetrically by summing charge depositions belonging to the shower and accounting for various detector effects:
@@ -90,6 +98,16 @@ where
     \item $dep$ is charge in units of ADC.
 \end{itemize}
 As the signal definition for this analysis does not require showers to be contained, an additional correction factor is needed to correct for missing energy in exiting showers.  A study for deriving this factor is ongoing with results expected soon.
+
+\begin{figure}[H]
+    \center
+    \subfloat[Muon]{\includegraphics[width=0.90\textwidth]{eff_vs_muon_momentum_mag.pdf}}\\
+
+    \subfloat[Pion]{\includegraphics[width=0.90\textwidth]{eff_vs_pi0_momentum_mag.pdf}} 
+
+    \caption{Comparisons of reconstructed and true muon kinetic energy for a selection of contained muons in ICARUS simulation.}
+    \label{fig:prephase_efficiency}
+\end{figure}
 
 \subsubsection{Muon Observables}
 \begin{figure}[H]
