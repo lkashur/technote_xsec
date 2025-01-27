@@ -4,8 +4,28 @@
 
 \section{Systematic Uncertainties}
 \label{sec:systs}
+The systematic uncertanties relevant to this analysis are divided into three categories: (1) beam flux, (2) interaction modeling, and (3) detector response modeling.  In this section, the methods for addressing each uncertainty are discussed.
 
 \subsection{Flux Uncertainties}
+The BNB flux at ICARUS is based on predictions from the MiniBooNE collaboration, which used the Geant4 simulation tool kit to model the propagation of particles produced in proton beam-target interactions \cite{bnbflux}.  Treatment of flux uncertainties, which arise from sources like hadron production, hadronic secondary interactions within the beam target, and beam focusing, are handled with a many-universes technique.  In this approach, uncertainties are determined by varying the underlying parameters from each source simultaneously in a set of ``universes'' to construct a covariance matrix.  The full set of parameters and the uncertainties they are varied within are shown in Table \ref{Tab:fluxparameters}.
+
+\begin{table}[ht]
+    \caption{Purity and efficiency for $\nu_{\mu}$ CC $\pi^{0}$ Selection Cuts}
+    \vspace{0.1cm}
+    \centering
+    \begin{tabular}{ c c c } 
+    \hline
+    Parameter & Uncertainty & Other \\
+    \hline
+    pi production & 0\% & 0 \\ 
+    pi production & 0\% & 2.64 \\
+    K production & 0\% & 4.03 \\
+    K production & 0\% & 83.18 \\
+    \hline
+    \end{tabular}
+    \label{Tab:fluxparameters}
+\end{table}
+
 \subsection{Cross Section Uncertainties}
 \subsection{Detector Uncertainties}
 
