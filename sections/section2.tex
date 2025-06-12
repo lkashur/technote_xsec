@@ -9,45 +9,33 @@
 \subsection{Signal Definition}
 The $\nu_{\mu}$ CC $\pi^{0}$ signal definition encompasses charged-current neutrino interactions occuring within the fiducial volume of the detector and containing
 \begin{itemize}
-    \item exactly one primary muon
-    \item exactly zero charged pions
-    \item exactly one neutral pion
+    \item exactly one primary muon ($p_{\mu} \ge 226$ MeV/c)
+    \item exactly zero primary charged pions ($E_{\pi^{\pm}} \ge 25$ MeV)
+    \item exactly one primary neutral pion
     \item any number of particles that are not muons or pions.
 \end{itemize}
-This signal definition applies to final state particles, or particles exiting the target nucleus post-final state interactions (FSI).  The fiducial volume requirement applies to the neutrino interaction vertex, which must be 25 cm from detector boundaries in the drift and vertical directions, 30 cm from the upstream detector face, and 50 cm from the downstream face.
-
-Additional requirements are placed on the signal definition to ensure tracking thresholds are met and selection purity and efficiency are optimized.  These are referred to as phase space constraints and include:
-\begin{itemize}
-    \item $p_{\mu} \ge 226$ MeV/c
-    \item $p_{\pi^{0}} \ge 100$ MeV/c.
-\end{itemize}
+The momentum/energy requirements for muons and charged pions are phase space constraints to ensure tracking thresholds are met and purity is optimized.  This signal definition applies to final state particles, or particles exiting the target nucleus post-final state interactions (FSI).  The fiducial volume requirement applies to the neutrino interaction vertex, which must be 25 cm from detector boundaries in the drift and vertical directions, 30 cm from the upstream detector face, and 50 cm from the downstream face.
 
 \subsection{Selection Cuts}
 When selecting $\nu_{\mu}$ CC $\pi^{0}$ interactions, cuts are made on various reconstructed outputs to narrow the list of candidate interactions.  Included are cuts on:
 \begin{itemize}
     \item \underline{Fiducial volume}: Reconstructed vertex is required to be inside fiducial volume (defined in signal definition).
-    \item \underline{Topology}: Interaction contains exactly one primary muon, zero primary charged pions, and two or three primary photons as reported by the machine-learning reconstruction chain's primary particle classification and particle identification algorithms.  Particles also meet phase space requirements of the signal definition.  In the case of three photons, the pair of photons with reconstructed invariant mass closest to $m_{\pi^{0}}$ is chosen to represent the neutral pion candidate.
-    \item \underline{Neutral pion mass}: Invariant diphoton mass $<$ 400 MeV in order to reject $\eta$ mesons.
     \item \underline{Flash time}: Interaction is associated with an optical flash that is in-time with BNB beam gate, as determined by the OpT0Finder algorithm.
+    \item \underline{Base Topology}: Interaction contains
+        \begin{itemize}
+            \item Exactly one primary muon ($p_{\mu} \ge 226$ MeV/c)
+            \item Exactly zero primary charged pions ($E_{\pi^{\pm}} \ge 25$ MeV)
+            \item Two or three primary photons ($E_{\gamma} \ge 20$ MeV)
+        \end{itemize}
+    \item \underline{Leading Photon}: Highest energy photon has $E_{\gamma} \ge 40$ MeV
+    \item \underline{Neutral pion mass}: Invariant diphoton mass $<$ 400 MeV in order to reject $\eta$ mesons.
 \end{itemize}
+Note that in the case of three primary photons meeting the above selection criteria, the photon pair with diphoton invariant mass closest to that of the true $\pi^{0}$ mass is chosen to belong to the candidate $\pi^{0}$.
 
 \subsection{Selection Performance}
-Selection performance is assessed using the BNB $\nu$ + Cosmic MC sample and off-beam BNB Run 2 data.  The metrics that have been evaulated are efficiency - the fraction of true signal interactions that are matched to selected interactions, and purity - the fraction of selected interactions that are matched to true signal interactions.  Figure \ref{fig:prephase_efficiency} shows the selection efficiency for $\nu_{\mu}$ CC $\pi^{0}$ events before muon and neutral pion momentum thresholds are applied.  The sharp drop-offs at 226 MeV/c and 100 MeV/c for the muon and neutral pion distributions, respectively, motivate the phase space constraints of the signal definition.
+Selection performance is assessed using the BNB $\nu$ + Cosmic MC sample and off-beam BNB Run 2 data.  The metrics that have been evaulated are efficiency - the fraction of true signal interactions that are matched to selected interactions, and purity - the fraction of selected interactions that are matched to true signal interactions.  Efficiency and purity for each selection cut are shown in Table \ref{Tab:pureff}.
 
-
-\begin{figure}[H]
-    \center
-    \subfloat{\includegraphics[width=0.90\textwidth]{eff_vs_muon_momentum_mag.pdf}}\\
-
-    \subfloat{\includegraphics[width=0.90\textwidth]{eff_vs_pi0_momentum_mag.pdf}} 
-
-    \caption{Efficiency of selecting signal events as a function of muon and neutral pion momentum.}
-    \label{fig:prephase_efficiency}
-\end{figure}
-
-After phase space constraints are placed, the selection achieves an efficiency of 59.68\% and a purity of 84.33\%.   Efficiency and purity for each selection cut are shown in Table \ref{Tab:pureff}.  Inefficiencies and impurities are primarily driven by PID failures, which are further characterized in \ref{fig:sel_pid_confusion}.  Background topologies can also be seen in Section \ref{subsec:vars}.
-
-\begin{table}[ht]
+\begin{table}[H]
     \caption{Purity and efficiency for $\nu_{\mu}$ CC $\pi^{0}$ Selection Cuts}
     \vspace{0.1cm}
     \centering
@@ -55,109 +43,68 @@ After phase space constraints are placed, the selection achieves an efficiency o
     \hline
     Selection Cut & Efficiency [\%] & Purity [\%]  \\
     \hline
-    No Cut & 100 & 0.09 \\ 
-    In-Time Flash & 96.6 & 2.64 \\
-    Fiducial Volume & 95.73 & 4.03 \\
-    Topology & 59.77 & 83.18 \\
-    $m_{\gamma \gamma} < 400$ MeV/c$^{2}$ & 59.68 & 84.33 \\
+    No Cut & 100.0 & 0.0 \\ 
+    In-Time Flash & 97.1 & 0.5 \\
+    Fiducial Volume & 96.6 & 2.6 \\
+    Base Topology & 71.6 & 80.7 \\
+    Leading Shower & 71.6 & 81.1 \\
+    $m_{\gamma \gamma} < 400$ MeV/c$^{2}$ & \textbf{71.5} & \textbf{82.6} \\
     \hline
     \end{tabular}
     \label{Tab:pureff}
 \end{table}
 
+Selection efficiency as a function of the cross section variables introduced in Section 1 are shown in Figure \ref{fig:sel_efficiency_plots}, showing that efficiency is largely flat across the signal phase space.  Both inefficiencies and impurities in the selection are driven by particle identification (PID) failures, as shown in confusion matrices for true signal particles (Figure \ref{fig:sel_pid_confusion}a) and reconstructed selected particles (Figure \ref{fig:sel_pid_confusion}b).  Background topologies are further discussed in Section 2.4.
+
+\begin{figure}[H]
+    \center
+    \subfloat[True muon momentum.]{\includegraphics[width=0.50\textwidth]{eff_vs_true_muon_momentum_mag.pdf}}
+    \subfloat[True $\cos{\theta_{\mu}}$.]{\includegraphics[width=0.50\textwidth]{eff_vs_true_muon_beam_costheta.pdf}} \\
+    \subfloat[True neutral pion momentum.]{\includegraphics[width=0.50\textwidth]{eff_vs_true_pi0_momentum_mag.pdf}}
+    \subfloat[True $\cos{\theta_{\pi^{0}}}$.]{\includegraphics[width=0.50\textwidth]{eff_vs_true_pi0_beam_costheta.pdf}}
+    \caption{Confusion matrices for particle identification, as determined by the SPINE machine-learning chain.}
+    \label{fig:sel_efficiency_plots}
+\end{figure}
+
 \begin{figure}[H]
     \center
     \subfloat[True-to-reco matching.]{\includegraphics[width=0.50\textwidth]{eff_pid_confusion.pdf}}
-    \subfloat[Reco-to-true matching.]{\includegraphics[width=0.50\textwidth]{pur_pid_confusion.pdf}} 
+    \subfloat[Reco-to-true matching.]{\includegraphics[width=0.50\textwidth]{missing.pdf}} 
     \caption{Confusion matrices for particle identification, as determined by the SPINE machine-learning chain.}
     \label{fig:sel_pid_confusion}
 \end{figure}
 
-\subsection{Variables of Interest}
+\subsection{Reconstructed Observables}
 \label{subsec:vars}
-In this section, the kinematic observables used in the single differential cross section measurement are discussed.  Included are the momenta of the final state muon and neutral pion, as well as the angles these particles make with the BNB.  An additional variable, the invariant diphoton mass, is examined as it serves as a useful standard candle in the calibration of the electromagnetic shower energy scale.  First, however, the methods used to estimate the energy (and momentum) of the reconstructed particles of interest is detailed.
-
-\subsubsection{Energy Reconstruction}
-To estimate the momentum of the reconstructed muon, it is first necessary to reconstruct its energy, for which a ``best estimate" approach is taken.  For muons contained within the active detector volume, momentum is calculated using the Continous Slowing Down Approximation (CSDA) that relates a particle's kinetic energy to its range in a material.  For momentum estimation of exiting muons, the degree of multiple coulomb scattering (MCS) along the track is instead used.  Figure \ref{fig:muon_energy} shows how each muon momentum estimate compares with true muon momentum in simulation.
-
-\begin{figure}[H]
-    \center
-    \subfloat[Range-based energy reconstruction.]{\includegraphics[width=0.50\textwidth]{muon_reco_csda_ke_vs_true_ke.pdf}}
-    \subfloat[Multiple coulomb scatering-based energy reconstruction.]{\includegraphics[width=0.50\textwidth]{muon_reco_mcs_ke_vs_true_ke.pdf}} 
-    \caption{Comparisons of reconstructed and true muon kinetic energy for a selection of contained muons in ICARUS simulation.}
-    \label{fig:muon_energy}
-\end{figure}
-
-Unlike muons, neutral pions do not directly ionize the detector medium.  The neutral pion momentum must therefore be inferred from the electromagnetic showers instigated by the photons it decays to.  Shower energy (and momentum) is estimated calorimetrically by summing charge depositions belonging to the shower and accounting for various detector effects:
-\begin{equation}
-    E_{shower} = W_{i} [\frac{MeV}{e^{-}}] \cdot C_{cal} [\frac{e^{-}}{ADC}] \cdot C_{adj} \cdot \frac{1}{R} \cdot \sum_{dep} e^{\frac{t_{drift}}{\tau}} \cdot dep [ADC],
-    \label{eq:shower_energy}
-\end{equation}
-where
-\begin{itemize}[label=]
-    \setlength\itemsep{0.1ex}
-    \item $W_{i}$ is the work function for argon
-    \item $C_{cal}$ converts charge units from ADC to electrons
-    \item $C_{adj}$ accounts for missing energy due to subthreshold charge and clustering effects in reconstruction
-    \item $R$ is the recombination factor
-    \item $\tau$ is the electron lifetime
-    \item $dep$ is charge in units of ADC.
-\end{itemize}
-
-The shower correction factor, $C_{adj}$, is derived from a study of contained photons in simulation.  Figure \ref{subfig:shower_correction} shows the ratio of reconstructed photon energy (from equation \ref{eq:shower_energy}) to true photon energy.  As this ratio is mostly flat across different energies, a constant correction factor is chosen.  Reconstructed photon energy is again compared to true photon energy in \ref{subfig:photon_reco_vs_true_energy}, showing agreement after the correction factor is applied.  It is also worth noting that since the analyis signal definition does not require showers to be contained, an additional correction factor is needed to correct for missing energy in exiting showers.  A study for deriving this factor is ongoing with results expected soon.
-
-\begin{figure}[H]
-    \center
-    \subfloat[Shower correction factor]
-        {\includegraphics[width=0.50\textwidth]{shower_corr.pdf} \label{subfig:shower_correction}}
-    \subfloat[Comparison of reconstructed and true photon energies after correction is applied]
-        {\includegraphics[width=0.50\textwidth]{photon_reco_vs_true_energy.pdf} \label{subfig:photon_reco_vs_true_energy}}
-    \caption{Study of reconstructed electromagnetic shower energy.}
-    \label{fig:photon_energy}
-\end{figure}
+In this section, the kinematic observables used in the single differential cross section measurement are highlighted.  Included are the momenta of the final state muon and neutral pion, as well as the angles these particles make with the BNB.  An additional variable, the invariant diphoton mass, is examined as it serves as a useful standard candle in the calibration of the electromagnetic shower energy scale.
 
 \subsubsection{Muon Observables}
 \begin{figure}[H]
     \center
     \subfloat[Muon momentum]
-        {\includegraphics[width=0.50\textwidth]{muon_momentum_mag_mc.pdf} \label{subfig:muon_momentum_mag_mc}}
-    \subfloat[Muon angle with respect to neutrino]
-        {\includegraphics[width=0.50\textwidth]{muon_beam_costheta_mc.pdf} \label{subfig:muon_beam_costheta_mc}}
+        {\includegraphics[width=0.50\textwidth]{reco_muon_momentum_mag.pdf} \label{subfig:reco_muon_momentum_mag}}
+    \subfloat[Muon angle with respect to neutrino beam]
+        {\includegraphics[width=0.50\textwidth]{reco_muon_beam_costheta.pdf} \label{subfig:reco_muon_beam_costheta}}
     \caption{Muon observables chosen for analysis}
-    \label{fig:muon_observables_mc}
-\end{figure}
-
-\subsubsection{Photon Observables}
-\begin{figure}[H]
-    \center
-    \subfloat[Subleading Photon Energy]
-        {\includegraphics[width=0.50\textwidth]{pi0_subleading_photon_energy_mc.pdf} \label{subfig:pi0_subleading_photon_energy_mc}}
-    \subfloat[Leading Photon Energy]
-        {\includegraphics[width=0.50\textwidth]{pi0_leading_photon_energy_mc.pdf} \label{subfig:pi0_leading_photon_energy_mc}}
-        
-    \subfloat[Subleading Photon Conversion Distance]
-        {\includegraphics[width=0.50\textwidth]{pi0_subleading_photon_conv_dist_mc.pdf} \label{subfig:pi0_subleading_photon_conv_dist_mc}}
-    \subfloat[Leading Photon Conversion Distance]
-        {\includegraphics[width=0.50\textwidth]{pi0_leading_photon_conv_dist_mc.pdf} \label{subfig:pi0_leading_photon_conv_dist_mc}}        
-    \caption{Photon observables chosen for analysis (not directly used in cross section measurement)}
-    \label{fig:photon_observables_mc}
+    \label{fig:reco_muon_observables}
 \end{figure}
 
 \subsubsection{Neutral Pion Observables}
 \begin{figure}[H]
     \center
-    \includegraphics[width=0.45\textwidth]{missing.pdf}
-    %\hspace{1cm}
-    \includegraphics[width=0.45\textwidth]{missing.pdf}
-    \caption[text]{A missing figure.}
-    \label{fig:pi0_obs0}
+    \subfloat[Neutral pion momentum]
+        {\includegraphics[width=0.50\textwidth]{reco_pi0_momentum_mag.pdf} \label{subfig:reco_pi0_momentum_mag}}
+    \subfloat[Neutral pion angle with respect to neutrino beam]
+        {\includegraphics[width=0.50\textwidth]{reco_pi0_beam_costheta.pdf} \label{subfig:reco_pi0_beam_costheta}}
+    \caption{Neutral pion observables chosen for analysis}
+    \label{fig:reco_pi0_observables}
 \end{figure}
 
 \begin{figure}[H]
     \center
-    \includegraphics[width=0.90\textwidth]{missing.pdf}
-    \caption[text]{A missing figure.}
-    \label{fig:pi0_obs1}
+    \includegraphics[width=0.90\textwidth]{reco_pi0_mass.pdf}
+    \caption[text]{Neutral pion invariant mass}
+    \label{fig:reco_pi0_mass}
 \end{figure}
 
 

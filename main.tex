@@ -29,12 +29,13 @@
 \addbibresource{sample.bib}
 %\usepackage{cite}
 \usepackage[toc,page]{appendix}
+\usepackage{derivative}
 \usepackage{amsmath}
 \usepackage{enumitem}
 \usepackage{lineno}
 \linenumbers
 
-\title{Measurement of Muon neutrino Charged-Current Neutral Pion Production at ICARUS}
+\title{Measurement of Muon Neutrino Charged-Current Neutral Pion Production at ICARUS}
 \author{Lane Kashur}
 \date{\today}
 
@@ -55,7 +56,6 @@ End abstract
 \subfile{sections/section2.tex}
 \subfile{sections/section3.tex}
 \subfile{sections/section4.tex}
-\subfile{sections/section5.tex}
 
 \section{Conclusions}
 
@@ -66,30 +66,10 @@ End abstract
 
 \begin{appendices}
 
-\section{Data Quality Cuts}
-\label{appendix:dataquality}
+\subfile{sections/qualitycuts}
+\subfile{sections/mlreco}
+\subfile{sections/energyreco}
 
-\section{Raw Signal Processing and Calibration}
-\label{appendix:sigandcalib}
-
-\section{Machine Learning Reconstruction}
-\label{appendix:mlreco}
-In this section, neutrino event reconstruction is discussed.  For information on raw signal processing and calibration, see Appendix \ref{appendix:sigandcalib}.
-Reconstruction of neutrino events is handled by the end-to-end, machine-learning based reconstruction chain known as SPINE (Scalable Particle Imaging with Neural Embeddings) \cite{spinepaper}.  As input, SPINE takes an image of 3D charge depositions within the detector, which is then operated on by a series of neural networks to carry out point classification and formation of particle and interaction objects.
-
-\begin{figure}[H]
-    \center
-    \includegraphics[width=0.90\textwidth]{figures/spinechain.pdf}
-    \caption[text]{The SPINE reconstruction chain.}
-    \label{fig:spinechain}
-\end{figure}
-
-\subsection{Point Classification}
-Point classification refers to the classification of 3D space points into abstract particle classes and the identification of points of interest.  Convolution neural networks (CNNs) are used for these tasks, beginnining with the removal of tomographic reconstruction artifacts by the 
-
-\subsection{Formation of Particles and Interactions}
-
-\subsection{Post-Processors}
 
 \end{appendices}
 
