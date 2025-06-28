@@ -16,14 +16,18 @@ In this document, we report the measurement of muon neutrino charged-current int
 \end{equation}
 Here, X represents any final state particles that are not muons or charged pions.  The ommitance of charged pions in the final state aims to exclude charged-current coherent pion production from the analysis, therefore allowing the cross section measurement to probe the resonant production mode that is more relevant to the SBN Program.
 
-Few charged-current $\pi^{0}$ measurements exist on liquid argon, and a high statistics cross section measurment of this channel at ICARUS will help constrain uncertainties in modeling resonant neutrino-nucleuon interactions.  We present single differential cross section measurements of $\nu_{\mu}$ CC $\pi^{0}$ interactions as a function of muon and neutral pion kinematic variables, namely the momentum and angle with respect to the neutrino beam for each particle.  Event selection is carried out with a novel machine-learning reconstruction pipeline, where high purity and excellent resolution in reconstructed variables enable the extraction of precise measurements.
+Few charged-current $\pi^{0}$ measurements exist on liquid argon, and a high statistics cross section measurment of this channel at ICARUS will help constrain uncertainties in modeling resonant neutrino-nucleuon interactions.  We present single differential cross section measurements of $\nu_{\mu}$ CC $\pi^{0}$ interactions as a function of muon and neutral pion kinematic variables, namely the momentum and angle with respect to the neutrino beam for each particle.  Event selection is carried out with a novel machine-learning reconstruction pipeline known as SPINE, where high purity and excellent resolution in reconstructed variables enable the extraction of precise measurements.  For information on the SPINE reconstruction chain, see Appendix \ref{appendix:mlreco}.
 
 \subsection{Data and Monte Carlo Samples}
 This analysis utilizes ICARUS data collected from the Booster Neutrino Beam (BNB) between winter 2022 and spring 2023 (ICARUS Run 2).  This collection period corresponds to approximately $2.05 \times 10^{20}$ protons on target (POT).  The analysis can be easily extended to the Neutrinos at the Main Injector (NuMI) beam, and will be in the future as data processing and treatment of systematic uncertanties allows.  Data is processed through the ICARUS reconstuction chain with \textit{icaruscode} software version v09\_89\_01\_02p01.
 
 Monte Carlo simulation consisting of BNB neutrinos (produced with GENIE) and cosmics (produced with CORSIKA) is used to assess selection performance and evaulate systematic uncertainties.  This includes a central value sample as well as dedicated detector variation samples, as will be discussed in Section \ref{sec:systs}.  To evaluate the impact from cosmic activity that occurs within the 1.6 $\mu s$ BNB beam gate, off-beam data is used.  A summary of production streams used in this analysis is shown in Table \ref{Tab:prod}.
 
-\begin{table}[ht]
+Given its relevance to cross section measurements, the neutrino interaction model employed by GENIE merits further discussion.  The Monte Carlo samples produced for this analysis use GENIE v3\_04\_00 with model configuration  AR23\_20i\_00\_000.  Commonly referred to as the SBN/DUNE tune, this configuration is widely used in ongoing analyses and is summarized in Table \ref{Tab:genie}.  Of particular interest to this analysis is the Berger-Sehgal resonance production model, as this yields the predicted number of neutral pions produced directly in $\nu$-Ar interactions.  Neutral pions can also be produced indirectly via final state interactions within the nucleus, in which case production rates are predicted by the INTRANUKE hA model.
+
+
+
+\begin{table}[H]
     \caption{Data/simulation streams used for $\nu_{\mu}$ CC $\pi^{0}$ analysis}
     \vspace{0.1cm}
     \centering
@@ -39,13 +43,44 @@ Monte Carlo simulation consisting of BNB neutrinos (produced with GENIE) and cos
     \label{Tab:prod}
 \end{table}
 
+\begin{table}[H]
+    \caption{Summary of GENIE interaction model used for $\nu_{\mu}$ CC $\pi^{0}$ analysis}
+    \vspace{0.1cm}
+    \centering
+    \begin{tabular}{ c c } 
+    \hline
+    Interaction  &  Model \\
+    \hline
+    Nuclear & Correlated Local Fermi Gas \\
+    Quasielastic Scattering & Valencia \\
+    2p2h & SuSAv2 \\
+    Resonance & Berger-Sehgal \\
+    Coherent Pion Production & Berger-Sehgal \\
+    Deep Inelastic Scattering & Bodek-Yang \\
+    Hadronization & AGKY \\
+    Final State Interactions & INTRANUKE hA \\
+    \hline
+    \end{tabular}
+    \label{Tab:genie}
+\end{table}
+
 \subsubsection{Data and Beam Quality Cuts}
 \textcolor{red}{Not yet implemented}\\
 To ensure the data used in this analysis is of physics quality, a number of data and beam quality cuts are enforced.  Namely, any data collection runs that were subject to DAQ issues or happened during detector hardware updates are removed from consideration.  Additionally, cuts are made to avoid detector features that are yet to be modeled in simulation, including a field cage short in the EE TPC and a cable hanging in the active volume of the WW TPC.  A full description of all data and beam quality cuts used in this analysis can be found in Appendix A.
 
-\subsubsection{Unblinding Strategy}
+\subsubsection{Unblinding Strategy and Timeline}
 The official blinding policy of the ICARUS collaboration (doc-db 34523) states that 90 percent of data is to remain blinded until any analysis is finalized.  To comply with this policy, all analysis toward the $\nu_{\mu}$ CC $\pi^{0}$ cross section measurement shown in this document only uses the 10 percent of Run 2 data that has been unblinded.  An exception has been made for data collection run 9435, which has been completely unblinded for the purpose of visual scanning.
 
-Pending approval from the physics coordinators and event selection working group, we request access to...(\textcolor{red}{To-do: specify unblinding request})
+A staged approach is taken for unblinding, with this technical note being updated and recirculated at each stage:
+\begin{enumerate}
+    \item \textbf{Early summer 2025}: Submit technical note to collaboration.  This submission serves to request access to the full ICARUS Run 2 BNB on-beam data set, corresponding to $2.05 \times 10^{20}$ POT.
+    \begin{enumerate}
+        \item As a work-in-progress analsyis, a number of to-do items will continue to be focused on during this time.
+        \item Comments from the collaboration will be addressed before moving on to the next stage.
+    \end{enumerate}
+    \item \textbf{Pending collaboration approval}: Unblind Run 2 on-beam data set and update relevant plots in this document.  As part of this stage, updated distributions will be scrutinized to ensure unblinding did not introduce any new discrepancies or bugs. 
+    \item \textbf{Late summer 2025}: Perform GUNDAM fitter studies, including closure tests that ensure fitter inputs are valid and p-value tests for goodness of fit.
+    \item \textbf{Early fall 2025}: Extract cross sections and report results to collaboration.
+\end{enumerate}
 
 \end{document}

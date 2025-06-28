@@ -54,7 +54,7 @@ Selection performance is assessed using the BNB $\nu$ + Cosmic MC sample and off
     \label{Tab:pureff}
 \end{table}
 
-Selection efficiency as a function of the cross section variables introduced in Section 1 are shown in Figure \ref{fig:sel_efficiency_plots}, showing that efficiency is largely flat across the signal phase space.  Both inefficiencies and impurities in the selection are driven by particle identification (PID) failures, as shown in confusion matrices for true signal particles (Figure \ref{fig:sel_pid_confusion}a) and reconstructed selected particles (Figure \ref{fig:sel_pid_confusion}b).  Background topologies are further discussed in Section 2.4.
+Selection efficiency as a function of the cross section variables introduced in Section 1 are shown in Figure \ref{fig:sel_efficiency_plots}, showing that efficiency is largely flat across the signal phase space.  Both inefficiencies and impurities in the selection are driven by particle identification (PID) failures, as shown in the particle identification confusion matrix for true signal particles in Figure \ref{fig:eff_pid_confusion} and the histograms for reconstructed observables in Section 2.4.
 
 \begin{figure}[H]
     \center
@@ -62,21 +62,22 @@ Selection efficiency as a function of the cross section variables introduced in 
     \subfloat[True $\cos{\theta_{\mu}}$.]{\includegraphics[width=0.50\textwidth]{eff_vs_true_muon_beam_costheta.pdf}} \\
     \subfloat[True neutral pion momentum.]{\includegraphics[width=0.50\textwidth]{eff_vs_true_pi0_momentum_mag.pdf}}
     \subfloat[True $\cos{\theta_{\pi^{0}}}$.]{\includegraphics[width=0.50\textwidth]{eff_vs_true_pi0_beam_costheta.pdf}}
-    \caption{Confusion matrices for particle identification, as determined by the SPINE machine-learning chain.}
+    \caption{Selection efficiency as a function of kinematic variables}
     \label{fig:sel_efficiency_plots}
 \end{figure}
 
 \begin{figure}[H]
     \center
-    \subfloat[True-to-reco matching.]{\includegraphics[width=0.50\textwidth]{eff_pid_confusion.pdf}}
-    \subfloat[Reco-to-true matching.]{\includegraphics[width=0.50\textwidth]{missing.pdf}} 
-    \caption{Confusion matrices for particle identification, as determined by the SPINE machine-learning chain.}
-    \label{fig:sel_pid_confusion}
+    \includegraphics[width=0.90\textwidth]{eff_pid_confusion.pdf}
+    \caption[text]{Particle identification confusion matrix for signal $\nu_{\mu}$ CC $\pi^{0}$ interactions, as determined by the SPINE machine learning reconstruction chain.}
+    \label{fig:eff_pid_confusion}
 \end{figure}
 
 \subsection{Reconstructed Observables}
 \label{subsec:vars}
 In this section, the kinematic observables used in the single differential cross section measurement are highlighted.  Included are the momenta of the final state muon and neutral pion, as well as the angles these particles make with the BNB.  An additional variable, the invariant diphoton mass, is examined as it serves as a useful standard candle in the calibration of the electromagnetic shower energy scale.
+
+For each case, the high purity of the selection is shown, with interactions containing one muon, zero charged pions, and one neutral pion (1$\mu$0$\pi^{\pm}$1$\pi^{0}$) being the dominant contribution at $\sim 83\%$.  Among the background categories considered are 1$\mu$0$\pi^{\pm}$1$\pi^{0}$ interactions where at least one particle fails the phase space requirements of the signal definition (out of phase space or OOPS) and 1$\mu$0$\pi^{\pm}$1$\pi^{0}$ interactions that fail the fiducial volume requirement of the signal definition (out of fiducial volume or OOFV).  If these interactions are allowed to pass the selection, the selection purity increases to $\sim 84\%$.  Other backgrounds include 1$\mu$N$\pi^{\pm}$1$\pi^{0}$ interactions that contain at least one charged pion (typically misreconstructed as a proton) and ``Other $\nu$'' interactions featuring topologies that don't meet the requirements of the other listed background categories, such as those containing nonprimary neutral pions from secondary scattering.
 
 \subsubsection{Muon Observables}
 \begin{figure}[H]
@@ -105,6 +106,26 @@ In this section, the kinematic observables used in the single differential cross
     \includegraphics[width=0.90\textwidth]{reco_pi0_mass.pdf}
     \caption[text]{Neutral pion invariant mass}
     \label{fig:reco_pi0_mass}
+\end{figure}
+
+\subsubsection{Transverse Kinematic Imbalance Observables}
+Transverse kinematic imbalance (TKI) variables are commonly studied in cross section analyses given their sensitivity to nuclear effects like FSI.  The following TKI observables are examined:
+\begin{description}
+    \item[$\mathbf{\boldsymbol{\delta} p_{T}}$] Transverse momentum imbalance, or the magnitude of the vector difference between the transverse momentum of the muon and the hadronic system
+    %\item[$\mathbf{\boldsymbol{\delta} \boldsymbol{\phi}_{T}}$] Transverse opening angle, or the angle between the transverse momentum of the hadronic system and the negative transverse momentum of the muon
+    \item[$\mathbf{\boldsymbol{\delta} \boldsymbol{\alpha}_{T}}$] Transverse boosting angle, or the angle between the transverse momentum imbalance vector and the negative transverse momentum of the muon 
+\end{description}
+
+\begin{figure}[H]
+    \center
+    \subfloat[Transverse momentum imbalance]
+        {\includegraphics[width=0.50\textwidth]{reco_dpT.pdf} \label{subfig:reco_dpT}} \\
+    %\subfloat[Transverse opening angle]
+    %    {\includegraphics[width=0.50\textwidth]{reco_dphiT.pdf} \label{subfig:reco_dphiT}} \\
+    \subfloat[Transverse boosting angle] 
+        {\includegraphics[width=0.50\textwidth]{reco_dalphaT.pdf}} \label{subfig:reco_dalphaT}
+    \caption{Transverse kinematic imbalance observables}
+    \label{fig:tki_observables}
 \end{figure}
 
 

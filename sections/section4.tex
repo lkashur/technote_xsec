@@ -30,9 +30,9 @@ The simulated BNB muon neutrino flux at the center of the ICARUS detector, scale
 The number of fiducial nuclear argon targets, or $N_{target}$, is determined from the density of liquid argon $\rho$, the fiducial volume $V_{fiducial}$, and the atomic weight of argon $M_{Ar}$, and the number of nucleons per argon atom $N_{nucleons}$.
 \begin{align}
 \begin{split}
-    N_{target} &= \frac{\rho \ V_{fiducial} \ N_{nucleons}}{M_{Ar}} \\
-    &= \frac{1.39 [\frac{\text{g}}{\text{cm}^{3}}] \ 2.25 \cdot 10^{8} [\text{cm}^{3}] \ 40}{6.63 \cdot 10^{-23} [\text{g}]} \\
-    &= 1.88 \cdot 10^{32} \ \text{nucleons}
+    N_{target} &= \frac{\rho \cdot V_{fiducial} \cdot N_{nucleons}}{M_{Ar}} \\
+    &= \frac{1.39 [\frac{\text{g}}{\text{cm}^{3}}] \cdot 2.25 \times 10^{8} [\text{cm}^{3}] \cdot 40}{6.63 \times 10^{-23} [\text{g}]} \\
+    &= 1.88 \times 10^{32} \ \text{nucleons}
 \end{split}
 \end{align}
 
@@ -43,21 +43,27 @@ To extract a cross section, the numerator of Equation \eqref{eq:xsec}, or the nu
 
 After determining the number of signal events from the fit, Equation \eqref{eq:xsec} is used to compute the differential cross section.  To propagate uncertainty of the fit to the final cross section result, many universes are created in which best-fit parameters are varied within the uncertainties allowed by the post-fit covariance matrix.  The cross section is recalculated for each universe, and the total uncertainty on the measurement is taken as the standard deviation across all universes.
 
-
-\subsection{Results}
+\subsection{Asimov Extraction}
+To demonstrate the GUNDAM cross section extraction machinery is functional and compatible with SPINE reconstructed output, an Asimov study in which selected event counts in data are assumed to be equal to those from Monte Carlo is carried out.  Results are shown in Figure \ref{fig:xsec_var_results_asimov}, and comparisons to the neutrino generator prediction will be made in Section \ref{subsec:xsec_validation}.
 
 \begin{figure}[H]
     \center
     \subfloat[Muon momentum]
-        {\includegraphics[width=0.50\textwidth]{xsec_muon_momentum_mag.pdf} \label{subfig:muon_momentum_mag_xsec}}
+        {\includegraphics[width=0.50\textwidth]{xsec_muon_momentum_mag_asimov.pdf} \label{subfig:muon_momentum_mag_xsec_asimov}}
     \subfloat[Muon angle with respect to neutrino beam]
-        {\includegraphics[width=0.50\textwidth]{xsec_muon_beam_costheta.pdf} \label{subfig:muon_beam_costheta_xsec}} \\
+        {\includegraphics[width=0.50\textwidth]{xsec_muon_beam_costheta_asimov.pdf} \label{subfig:muon_beam_costheta_xsec_asimov}} \\
     \subfloat[Neutral pion momentum]
-        {\includegraphics[width=0.50\textwidth]{xsec_pi0_momentum_mag.pdf} \label{subfig:pi0_momentum_mag_xsec}}   
+        {\includegraphics[width=0.50\textwidth]{xsec_pi0_momentum_mag_asimov.pdf} \label{subfig:pi0_momentum_mag_xsec_asimov}}   
     \subfloat[Neutral pion angle to neutrino beam]
-        {\includegraphics[width=0.50\textwidth]{xsec_pi0_beam_costheta.pdf} \label{subfig:pi0_beam_costheta_xsec}}          
-    \caption{Observables chosen for analysis}
-    \label{fig:xsec_var_results}
+        {\includegraphics[width=0.50\textwidth]{xsec_pi0_beam_costheta_asimov.pdf} \label{subfig:pi0_beam_costheta_xsec_asimov}}          
+    \caption{Asimov cross section extraction for for analysis variables}
+    \label{fig:xsec_var_results_asimov}
 \end{figure}
+
+\subsection{Validation}
+\label{subsec:xsec_validation}
+\textcolor{red}{To-do: Include closure tests, p-value tests, etc.}
+
+\subsection{Results}
 
 \end{document}
